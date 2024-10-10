@@ -10,3 +10,10 @@ CREATE TABLE profiles (
     username TEXT,
     bio TEXT
 );
+
+SELECT
+        posts.id,
+        profiles.username,
+        posts.content
+        FROM posts
+    INNER JOIN profiles ON posts.clerk_id = profiles.clerk_id;
