@@ -1,10 +1,14 @@
 import { connect } from "@/lib/connect";
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { Container, Flex, Heading, Text, Button, Card, Avatar, Box, Badge } from "@radix-ui/themes";
 import { ChatBubbleIcon, CookieIcon } from "@radix-ui/react-icons";
 
 export default async function PostsPage() {
+    const user = await currentUser()
+    const username = user?.username;
+    const userImage= user?.imageUrl;
+    // console.log(userImage)
   // get the user ID from clerk
   const { userId } = auth();
 
@@ -13,7 +17,8 @@ export default async function PostsPage() {
     SELECT
         posts.id,
         profiles.username,
-        posts.content
+        posts.content,
+        profiles.profile_image
         FROM posts
     INNER JOIN profiles ON posts.clerk_id = profiles.clerk_id;
     `);
@@ -32,6 +37,7 @@ export default async function PostsPage() {
     ]);
     revalidatePath('/posts');
   }
+  
 
   return (
    <Box className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -63,13 +69,14 @@ export default async function PostsPage() {
     <Flex gap="4" direction="column">
        
     {posts.rows.map((post: any) => {
-            console.log(posts)
-            return (
+        console.log(getImage)
+
+        return (
             <Card key={post.id}>
                 <div>
                     <Avatar
                         size="4"
-                        src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?&w=64&h=64&dpr=2&q=70&crop=focalpoint&fp-x=0.67&fp-y=0.5&fp-z=1.4&fit=crop"
+                        src={`${post.profile_image}`}
                         radius="full"
                         fallback="T"
                     />
@@ -108,7 +115,7 @@ export default async function PostsPage() {
                             <Flex align="center"> 
                                 {/* Align icon to our text */}
                                 <ChatBubbleIcon />
-                                <Text color="gray" ml="2" size="1">3 Comments</Text>
+                                <Text color="gray" ml="2" size="1">3 Likes</Text>
                             </Flex>
                             <CookieIcon />
                         </Flex>
@@ -118,12 +125,8 @@ export default async function PostsPage() {
         </Box>
     </Flex>
     </Container>
-
-
     </Box>
     
   );
 }
-
-
 

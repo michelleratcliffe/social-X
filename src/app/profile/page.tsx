@@ -1,8 +1,10 @@
 import { connect } from "@/lib/connect";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
   const { userId } = auth();
+
+  const user = await currentUser()
 
   async function handleUpdateProfile(formData: any) {
     "use server";
@@ -10,6 +12,9 @@ export default function ProfilePage() {
     // get the information from the form
     const username = formData.get("username");
     const bio = formData.get("bio");
+
+    const userImage= user?.imageUrl;
+    // console.log(userImage);
 
     // check whether a profile exists
     const profiles = await db.query(
@@ -19,8 +24,8 @@ export default function ProfilePage() {
     if (profiles.rowCount === 0) {
       // insert our profile into the DB
       await db.query(
-        `INSERT INTO profiles (clerk_id, username, bio) VALUES ($1, $2, $3)`,
-        [userId, username, bio]
+        `INSERT INTO profiles (clerk_id, username, bio, profile_image) VALUES ($1, $2, $3, $4)`,
+        [userId, username, bio, userImage]
       );
     } else {
       // update the existing item

@@ -5,6 +5,8 @@ import { connect } from "@/lib/connect";
 export default async function Home() {
   const user = await currentUser()
   const username = user?.username;
+  const userImage= user?.imageUrl;
+  console.log(userImage)
 
   const welcomeSuffix = username ?`, ${username}` : '';
 
