@@ -105,4 +105,8 @@ What went really well and what could have gone better?
 Login/sigup
 Profile edit
 Protected Routes /posts /profile
+user avatars
+not found page
+
+when user logs in reroute to change bio
 
