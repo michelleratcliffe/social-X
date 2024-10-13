@@ -11,7 +11,7 @@ import {
 } from '@clerk/nextjs'
 import './globals.css'
 import "@radix-ui/themes/styles.css"
-import { Theme, Flex, Text, Button, ThemePanel } from '@radix-ui/themes'
+import { Theme } from '@radix-ui/themes'
 import { dark } from '@clerk/themes'
 
 

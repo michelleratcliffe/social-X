@@ -1,15 +1,14 @@
 import { connect } from "@/lib/connect";
-import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { Container, Flex, Heading, Text, Button, Card, Avatar, Box, Badge } from "@radix-ui/themes";
 import { ChatBubbleIcon, CookieIcon } from "@radix-ui/react-icons";
 
 export default async function PostsPage() {
     const user = await currentUser()
-    const username = user?.username;
-    const userImage= user?.imageUrl;
+    // const userImage= user?.imageUrl;
     // console.log(userImage)
-    
+
   // get the user ID from clerk
   const { userId } = auth();
 
