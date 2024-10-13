@@ -5,7 +5,7 @@ import { Container, Flex, Heading, Text, Button, Card, Avatar, Box, Badge } from
 import { ChatBubbleIcon, CookieIcon } from "@radix-ui/react-icons";
 
 export default async function PostsPage() {
-    const user = await currentUser()
+    // const user = await currentUser()
     // const userImage= user?.imageUrl;
     // console.log(userImage)
 
