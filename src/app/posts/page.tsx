@@ -9,6 +9,7 @@ export default async function PostsPage() {
     const username = user?.username;
     const userImage= user?.imageUrl;
     // console.log(userImage)
+    
   // get the user ID from clerk
   const { userId } = auth();
 
@@ -28,7 +29,7 @@ export default async function PostsPage() {
     const db = connect();
     // get the content from the form
     const content = formData.get("content");
-    console.log(content)
+    // console.log(content)
 
     // add the post to the database
     await db.query(`INSERT INTO posts (clerk_id, content) VALUES ($1, $2)`, [
@@ -69,7 +70,7 @@ export default async function PostsPage() {
     <Flex gap="4" direction="column">
        
     {posts.rows.map((post: any) => {
-        console.log(getImage)
+        // console.log(getImage)
 
         return (
             <Card key={post.id}>
