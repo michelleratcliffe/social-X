@@ -1,3 +1,6 @@
+import { Spinner,Button } from "@radix-ui/themes";
+
+
 export default function loading() {
-    return (<div>Loading...</div>)
+    return (<div><Button loading>Bookmark</Button></div>)
 }

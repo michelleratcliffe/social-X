@@ -46,7 +46,7 @@ export default function RootLayout({
         <body>
           <Theme appearance='dark' accentColor="violet" grayColor="sage" radius="small">
             <SignedOut>
-              <SignInButton />
+              <SignInButton  fallbackRedirectUrl="/profile" signUpFallbackRedirectUrl="/profile"/>
             </SignedOut>
             <SignedIn>
               <div className='text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ... p-1 text-right'>

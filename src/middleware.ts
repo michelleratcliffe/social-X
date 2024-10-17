@@ -1,7 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-
-
 //protected paths
 const isProtectedRoute = createRouteMatcher([
   '/posts(.*)', '/profile(.*)'
@@ -9,8 +7,10 @@ const isProtectedRoute = createRouteMatcher([
 
 export default clerkMiddleware((auth, req) => {
   if(isProtectedRoute(req)) {
+     // If there is no signed in user, this will return a 404 error
     auth().protect()
   }
+ 
 });
 
 

@@ -1,12 +1,18 @@
-import Image from "next/image"
+import Image from "next/image";
+import pageNotFound from '../public/page-not-found.png'
+
 
 export default function notFound() {
     return (
-        <Image
-        src="./page-not-found.png"
-        width={1400}
-        height={1000}
-        alt="404 Page Not Found"
-        />
+        <div>
+            <Image
+            src={pageNotFound}
+            width={1400}
+            height={1000}
+            alt="404 Page Not Found"
+            />
+        {/* <h1>Page Not Found</h1> */}
+        </div>
+        
     )
 }

@@ -4,8 +4,9 @@ import { revalidatePath } from "next/cache";
 import { Container, Flex, Heading, Text, Button, Card, Avatar, Box, Badge } from "@radix-ui/themes";
 import { ChatBubbleIcon, CookieIcon } from "@radix-ui/react-icons";
 
+
 export default async function PostsPage() {
-    // const user = await currentUser()
+    const user = await currentUser()
     // const userImage= user?.imageUrl;
     // console.log(userImage)
 
@@ -88,9 +89,9 @@ export default async function PostsPage() {
         })}
     </Flex>
 
-    <Flex gap="4"  pb="4">
+    <Flex gap="4" pt="2" pb="2">
         <Box width="700px">
-            <Card size="3">
+            <Card size="3" >
                 <Flex  gap="4" align="center">
                     <Avatar size="6" radius="full" fallback="T" color="indigo"/>
                     <Box>
@@ -130,3 +131,39 @@ export default async function PostsPage() {
   );
 }
 
+{/* <Flex gap="4" pt="2" pb="2" direction="column">
+{posts.rows.map((post: any) => {
+     return (
+        <Box width="700px">
+            <Card size="3"  key={post.id}>
+                <Flex  gap="4" align="center">
+                    <Avatar size="6" src={`${post.profile_image}`} radius="full" fallback="T" color="indigo"/>
+                    <Box>
+                        <Text as="div" size="4" weight="bold">
+                        {post.username} says:
+                        </Text>
+                        <Text as="div" size="4" color="gray">
+                            Engineering
+                        </Text>
+                        <Flex gap="2">
+                            <Badge color="orange">Design</Badge>
+                            <Badge color="crimson">UI</Badge>
+                        </Flex>
+                        <Text>
+                        {post.content}
+                        </Text>
+                        <Flex justify="between" pt="1">
+                            <Flex align="center"> 
+                                
+                                <ChatBubbleIcon /> //Align to text
+                                <Text color="gray" ml="2" size="1">3 Likes</Text>
+                            </Flex>
+                            <CookieIcon />
+                        </Flex>
+                    </Box>
+            </Flex>
+        </Card>
+    </Box>
+            );
+        })}
+</Flex> */}
