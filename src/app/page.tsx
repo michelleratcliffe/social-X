@@ -1,18 +1,17 @@
-import { currentUser, clerkMiddleware } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Home() {
-  const user = await currentUser()
+  const user = await currentUser();
   const username = user?.username;
-  const userImage= user?.imageUrl;
-  console.log(userImage)
+  const userImage = user?.imageUrl;
+  console.log(userImage);
 
-  const welcomeSuffix = username ?`, ${username}` : '';
+  const welcomeSuffix = username ? `, ${username}` : "";
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <h2>Welcome {welcomeSuffix}</h2>
       <p>Feel free to explore!</p>
-   
     </div>
   );
 }
