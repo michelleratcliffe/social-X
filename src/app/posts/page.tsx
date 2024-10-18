@@ -44,7 +44,7 @@ export default async function PostsPage() {
   console.log(posts.rows);
   //   await db.query(`DELETE FROM posts WHERE id = $1`, posts.id);
 
-  async function handleCreatePost(formData: formData) {
+  async function handleCreatePost(formData: FormData) {
     "use server";
     const db = connect();
     // get the content from the form
@@ -156,10 +156,7 @@ export default async function PostsPage() {
                         {/* <input onClick={handleClick}>+1</input> */}
                         <HeartIcon className="justify-self-end" />
                         <HeartFilledIcon />
-                        {/* <button onClick={() => handleDeletePost(post.id)}>
-                          <Cross1Icon />
-                          Delete{" "}
-                        </button> */}
+                        <Cross1Icon />
                       </Flex>
                     </Box>
                   </Flex>
