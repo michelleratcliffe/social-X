@@ -11,12 +11,14 @@ export default async function ProfilePage() {
 
   async function handleUpdateProfile(formData: any) {
     "use server";
+    // console.log(formData);
+    // console.log(formData.getAll("interests"));
     const db = connect();
     // get the information from the form
     const username = formData.get("username");
     const bio = formData.get("bio");
     const jobrole = formData.get("jobrole");
-    const interests = formData.get("interests");
+    const interests = formData.getAll("interests");
 
     const userImage = user?.imageUrl;
     // console.log(userImage);
@@ -78,6 +80,7 @@ export default async function ProfilePage() {
                   <Checkbox.Root
                     className="CheckboxRoot"
                     name="interests"
+                    value="designer"
                     defaultChecked
                     id="c1"
                   >
@@ -90,7 +93,12 @@ export default async function ProfilePage() {
                     Designer.
                   </label>
 
-                  <Checkbox.Root className="CheckboxRoot" id="c2">
+                  <Checkbox.Root
+                    className="CheckboxRoot"
+                    id="c2"
+                    name="interests"
+                    value="developer"
+                  >
                     <Checkbox.Indicator className="CheckboxIndicator">
                       <CheckIcon />
                     </Checkbox.Indicator>
@@ -100,7 +108,12 @@ export default async function ProfilePage() {
                     Developer.
                   </label>
 
-                  <Checkbox.Root className="CheckboxRoot" id="c3">
+                  <Checkbox.Root
+                    className="CheckboxRoot"
+                    id="c3"
+                    name="interests"
+                    value="ux"
+                  >
                     <Checkbox.Indicator className="CheckboxIndicator">
                       <CheckIcon />
                     </Checkbox.Indicator>
