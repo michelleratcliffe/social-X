@@ -1,7 +1,6 @@
 import { connect } from "@/lib/connect";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { Flex, Text, Button } from "@radix-ui/themes";
-import * as RadioGroup from "@radix-ui/react-radio-group";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import "./profile.css";
