@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { connect } from "@/lib/connect";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -43,6 +41,15 @@ export default async function PostsPage() {
         FROM posts
     INNER JOIN profiles ON posts.clerk_id = profiles.clerk_id;
     `);
+  console.log(posts.rows[0]);
+  type Post = {
+    id: number;
+    username: string;
+    content: string;
+    profile_image: string;
+    jobrole: string;
+    interests: string[];
+  };
 
   //   await db.query(`DELETE FROM posts WHERE id = $1`, posts.id);
 
@@ -116,7 +123,7 @@ export default async function PostsPage() {
         </Flex>
 
         <Flex gap="4" pt="2" pb="2" direction="column">
-          {posts.rows.map((post: any) => {
+          {posts.rows.map((post: Post) => {
             return (
               <Box key={post.id}>
                 <Card>
