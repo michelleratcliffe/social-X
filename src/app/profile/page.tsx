@@ -47,7 +47,7 @@ export default async function ProfilePage() {
       className="flex min-h-screen flex-col items-center justify-between p-24"
     >
       <Flex direction="column" gap="4">
-        <div className="text-white-500 m-4 p-1 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
+        <div className="text-white-500 m-4 p-1 bg-gradient-to-r from-cyan-500 to-blue-500 ...">
           <div>
             <h1 className="text-center text-4xl font-spaceGrotesk font-semibold p-10">
               Please update your profile page
@@ -77,6 +77,7 @@ export default async function ProfilePage() {
                 >
                   <Checkbox.Root
                     className="CheckboxRoot"
+                    name="interests"
                     defaultChecked
                     id="c1"
                   >
