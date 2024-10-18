@@ -1,13 +1,14 @@
 import { connect } from "@/lib/connect";
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { Flex, Text, Button } from '@radix-ui/themes'
-import { Row } from "@radix-ui/themes/src/components/table.jsx";
+import { Flex, Text, Button } from "@radix-ui/themes";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-// import {RadioGroup, Radio} from "@nextui-org/radio";
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { CheckIcon } from "@radix-ui/react-icons";
+import "./profile.css";
 
 export default async function ProfilePage() {
   const { userId } = auth();
-  const user = await currentUser()
+  const user = await currentUser();
 
   async function handleUpdateProfile(formData: any) {
     "use server";
@@ -18,7 +19,7 @@ export default async function ProfilePage() {
     const jobrole = formData.get("jobrole");
     const interests = formData.get("interests");
 
-    const userImage= user?.imageUrl;
+    const userImage = user?.imageUrl;
     // console.log(userImage);
 
     // check whether a profile exists
@@ -42,62 +43,81 @@ export default async function ProfilePage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Flex direction="column" gap="2">
-        <h1>Please update your profile page</h1>
-        <Text>
-          Welcome to Bebo 2. You&apos;re probably a normal person trying to be
-          edgy.
-        </Text>
-      
-
+    <div
+      id="profile-box"
+      className="flex min-h-screen flex-col items-center justify-between p-24"
+    >
+      <Flex direction="column" gap="4">
         <div className="text-white-500 m-4 p-1 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">
-          <form action={handleUpdateProfile}>
+          <div>
+            <h1 className="text-center text-4xl font-spaceGrotesk font-semibold p-10">
+              Please update your profile page
+            </h1>
+            <br />
+            <Text className="p-10">
+              Please update your details and choose your interests.
+            </Text>
+            <br />
+          </div>
+          <form action={handleUpdateProfile} className="p-10">
             <Flex direction="column" gap="2">
-            <input name="username" placeholder="Username" height={30}/>
-            <input name="jobrole" placeholder="What is your current job title" height={30}/>
-            
-            <Flex direction="row" gap="2">
-            
-              <RadioGroup.Root
-              name="interests"
-              className="RadioGroupRoot"
-              defaultValue="Developer"
-              aria-label="View density"
-              >
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <RadioGroup.Item className="RadioGroupItem" name="interests" value="Developer" id="r1">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                  </RadioGroup.Item>
-                  <label className="developer" htmlFor="r1">
-                  Developer
+              <input name="username" placeholder="Username" className="p-4" />
+              <input
+                name="jobrole"
+                placeholder="What is your current job title"
+                className="p-4"
+              />
+
+              <Flex direction="row" gap="2">
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Checkbox.Root
+                    className="CheckboxRoot"
+                    defaultChecked
+                    id="c1"
+                  >
+                    <Checkbox.Indicator className="CheckboxIndicator">
+                      <CheckIcon />
+                    </Checkbox.Indicator>
+                  </Checkbox.Root>
+
+                  <label className="Label p-5" htmlFor="c1">
+                    Designer.
+                  </label>
+
+                  <Checkbox.Root className="CheckboxRoot" id="c2">
+                    <Checkbox.Indicator className="CheckboxIndicator">
+                      <CheckIcon />
+                    </Checkbox.Indicator>
+                  </Checkbox.Root>
+
+                  <label className="Label p-5" htmlFor="c2">
+                    Developer.
+                  </label>
+
+                  <Checkbox.Root className="CheckboxRoot" id="c3">
+                    <Checkbox.Indicator className="CheckboxIndicator">
+                      <CheckIcon />
+                    </Checkbox.Indicator>
+                  </Checkbox.Root>
+
+                  <label className="Label p-5" htmlFor="c3">
+                    UX.
                   </label>
                 </div>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <RadioGroup.Item className="RadioGroupItem" value="Designer" id="r2">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                  </RadioGroup.Item>
-                  <label className="designer" htmlFor="r2">
-                    Designer
-                  </label>
-                </div>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <RadioGroup.Item className="RadioGroupItem" value="UX" id="r3">
-                    <RadioGroup.Indicator className="RadioGroupIndicator" />
-                  </RadioGroup.Item>
-                  <label className="ux" htmlFor="r3">
-                    UX
-                  </label>
-                </div>
-              </RadioGroup.Root>
-            </Flex>
-            <textarea name="bio" placeholder="Bio"></textarea>
-            
-            <Button>Submit</Button>
+              </Flex>
+
+              <textarea name="bio" placeholder="Bio" className="p-4"></textarea>
+
+              <Button>Submit</Button>
             </Flex>
           </form>
         </div>
-     
       </Flex>
     </div>
   );
