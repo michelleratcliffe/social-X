@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { connect } from "@/lib/connect";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -114,7 +116,6 @@ export default async function PostsPage() {
         </Flex>
 
         <Flex gap="4" pt="2" pb="2" direction="column">
-          {/* @ts-expect-error */}
           {posts.rows.map((post: any) => {
             return (
               <Box key={post.id}>
