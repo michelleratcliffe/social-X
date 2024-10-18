@@ -1,5 +1,5 @@
 import { connect } from "@/lib/connect";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import {
   Container,
@@ -33,7 +33,7 @@ export default async function PostsPage() {
     INNER JOIN profiles ON posts.clerk_id = profiles.clerk_id;
     `);
 
-  async function handleCreatePost(formData: any) {
+  async function handleCreatePost(formData: object) {
     "use server";
     const db = connect();
     // get the content from the form
