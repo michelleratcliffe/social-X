@@ -41,7 +41,7 @@ export default async function PostsPage() {
         FROM posts
     INNER JOIN profiles ON posts.clerk_id = profiles.clerk_id;
     `);
-  console.log(posts.rows);
+
   //   await db.query(`DELETE FROM posts WHERE id = $1`, posts.id);
 
   async function handleCreatePost(formData: FormData) {
@@ -50,7 +50,6 @@ export default async function PostsPage() {
     // get the content from the form
     const content = formData.get("content");
     // const obj = Object.fromEntries(formData);
-    // console.log(content)
 
     // add the post to the database
     await db.query(`INSERT INTO posts (clerk_id, content) VALUES ($1, $2)`, [
@@ -115,10 +114,11 @@ export default async function PostsPage() {
         </Flex>
 
         <Flex gap="4" pt="2" pb="2" direction="column">
+          {/* @ts-ignore */}
           {posts.rows.map((post: any) => {
             return (
-              <Box>
-                <Card key={post.id}>
+              <Box key={post.id}>
+                <Card>
                   <Flex gap="6" align="center">
                     <Avatar
                       size="6"
@@ -135,13 +135,15 @@ export default async function PostsPage() {
                         {post.jobrole}
                       </Text>
                       <Flex gap="2" className="pt-2 pb-2">
-                        {post.interests?.map((interest: any) => {
-                          return (
-                            <Badge color={BadgeColor(interest)}>
-                              {interest}
-                            </Badge>
-                          );
-                        })}
+                        {post.interests?.map(
+                          (interest: string, index: number) => {
+                            return (
+                              <Badge key={index} color={BadgeColor(interest)}>
+                                {interest}
+                              </Badge>
+                            );
+                          }
+                        )}
                       </Flex>
                       <Text size="4" as="p">
                         {post.content}

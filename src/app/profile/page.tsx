@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   const { userId } = auth();
   const user = await currentUser();
 
-  async function handleUpdateProfile(formData: any) {
+  async function handleUpdateProfile(formData: FormData) {
     "use server";
     // console.log(formData);
     // console.log(formData.getAll("interests"));
