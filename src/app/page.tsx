@@ -1,4 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/dist/server/api-utils";
 
 export default async function Home() {
   const user = await currentUser();
@@ -7,11 +8,13 @@ export default async function Home() {
   console.log(userImage);
 
   const welcomeSuffix = username ? `, ${username}` : "";
-
+  if (!user) {
+    redirect("/profile");
+  }
   return (
     <div className="flex min-h-screen flex-col items-center p-24">
       <h2>Welcome {welcomeSuffix}</h2>
-      <p>Feel free to explore!</p>
+      <p>Please can you update your Profile page!</p>
     </div>
   );
 }

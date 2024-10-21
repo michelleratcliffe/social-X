@@ -65,7 +65,6 @@ export default async function PostsPage() {
       userId,
       content,
     ]);
-
     revalidatePath("/posts");
   }
 
