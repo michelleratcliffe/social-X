@@ -4,6 +4,7 @@ import { Flex, Text, Button } from "@radix-ui/themes";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import "./profile.css";
+import { redirect } from "next/navigation";
 
 export default async function ProfilePage() {
   const { userId } = auth();
@@ -40,6 +41,7 @@ export default async function ProfilePage() {
         `UPDATE profiles SET username=$1, bio=$2, jobrole=$4, interests=$5 WHERE clerk_id=$3`,
         [username, bio, userId, jobrole, interests]
       );
+      redirect("/posts");
     }
   }
 

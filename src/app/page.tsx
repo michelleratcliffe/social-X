@@ -9,7 +9,7 @@ export default async function Home() {
   const welcomeSuffix = username ? `, ${username}` : "";
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center p-24">
       <h2>Welcome {welcomeSuffix}</h2>
       <p>Feel free to explore!</p>
     </div>
